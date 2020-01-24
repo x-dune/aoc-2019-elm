@@ -7,8 +7,8 @@ import Html.Attributes exposing (class, href)
 import Page.Aoc
 import Page.NotFound
 import Route exposing (Route)
-import Solution.Aoc1
-import Solution.Aoc2
+import Solution.Day1
+import Solution.Day2
 import Solution.Types exposing (Solution)
 import Url exposing (Url)
 
@@ -50,11 +50,11 @@ initCurrentPage ( model, existingCmds ) =
                 Route.NotFound ->
                     ( NotFoundPage, Cmd.none )
 
-                Route.Aoc1 ->
-                    ( AocPage Page.Aoc.init Solution.Aoc1.solution, Cmd.none )
+                Route.Day1 ->
+                    ( AocPage Page.Aoc.init Solution.Day1.solution, Cmd.none )
 
-                Route.Aoc2 ->
-                    ( AocPage Page.Aoc.init Solution.Aoc2.solution, Cmd.none )
+                Route.Day2 ->
+                    ( AocPage Page.Aoc.init Solution.Day2.solution, Cmd.none )
     in
     ( { model | page = currentPage }
     , Cmd.batch [ existingCmds, mappedPageCmds ]
@@ -97,8 +97,8 @@ view model =
     { title = "Advent Of Code 2019 | Elm Solutions"
     , body =
         [ div []
-            [ a [ href "/Aoc1", class "m-10" ] [ text "/Aoc1" ]
-            , a [ href "/Aoc2", class "m-10" ] [ text "/Aoc2" ]
+            [ a [ href "/day1", class "m-10" ] [ text "/day1" ]
+            , a [ href "/day2", class "m-10" ] [ text "/day2" ]
             , a [ href "/totallynotapage", class "m-10" ] [ text "/totallynotapage" ]
             ]
         , bodyView model

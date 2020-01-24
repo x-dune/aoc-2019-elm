@@ -6,8 +6,8 @@ import Url.Parser exposing (Parser, map, oneOf, parse, s, top)
 
 type Route
     = NotFound
-    | Aoc1
-    | Aoc2
+    | Day1
+    | Day2
 
 
 parseUrl : Url -> Route
@@ -23,7 +23,7 @@ parseUrl url =
 matchRoute : Parser (Route -> a) a
 matchRoute =
     oneOf
-        [ map Aoc1 top
-        , map Aoc1 (s "Aoc1")
-        , map Aoc2 (s "Aoc2")
+        [ map Day1 top
+        , map Day1 (s "day1")
+        , map Day2 (s "day2")
         ]

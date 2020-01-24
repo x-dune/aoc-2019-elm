@@ -1,4 +1,4 @@
-module Solution.Aoc1 exposing (solution)
+module Solution.Day1 exposing (solution)
 
 import Solution.Types exposing (Solution)
 

@@ -1,4 +1,4 @@
-module Solution.Aoc2 exposing (part2, solution)
+module Solution.Day2 exposing (part2, solution)
 
 import Array exposing (Array)
 import Solution.Types exposing (Solution)
