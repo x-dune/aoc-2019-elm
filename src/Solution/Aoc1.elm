@@ -1,6 +1,6 @@
 module Solution.Aoc1 exposing (solution)
 
-import Util.Helpers exposing (SolutionOutput)
+import Solution.Types exposing (Solution)
 
 
 part1 : List String -> Int
@@ -56,7 +56,7 @@ fuelMassToFuelMass ( accFuelMass, fuelMasses ) =
         fuelMassToFuelMass ( accFuelMass + List.foldl (+) 0 nextFuelMasses, nextFuelMasses )
 
 
-solution : String -> SolutionOutput
+solution : Solution
 solution input =
     let
         processedInput =

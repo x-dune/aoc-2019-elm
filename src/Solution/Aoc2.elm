@@ -1,7 +1,7 @@
 module Solution.Aoc2 exposing (part2, solution)
 
 import Array exposing (Array)
-import Util.Helpers exposing (SolutionOutput)
+import Solution.Types exposing (Solution)
 
 
 type alias IntcodeIO =
@@ -117,7 +117,7 @@ part2 inputArray =
             genericError
 
 
-solution : String -> SolutionOutput
+solution : Solution
 solution input =
     let
         processedInput =

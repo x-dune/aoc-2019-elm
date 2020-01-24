@@ -9,13 +9,13 @@ import Page.NotFound
 import Route exposing (Route)
 import Solution.Aoc1
 import Solution.Aoc2
+import Solution.Types exposing (Solution)
 import Url exposing (Url)
-import Util.Helpers exposing (SolutionOutput)
 
 
 type Page
     = NotFoundPage
-    | AocPage Page.Aoc.Model (String -> SolutionOutput)
+    | AocPage Page.Aoc.Model Solution
 
 
 type alias Model =

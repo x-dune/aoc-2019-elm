@@ -3,7 +3,7 @@ module Page.Aoc exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (class, value)
 import Html.Events exposing (onClick, onInput)
-import Util.Helpers exposing (SolutionOutput)
+import Solution.Types exposing (Solution, SolutionOutput)
 
 
 type alias Model =
@@ -45,7 +45,7 @@ view model =
         ]
 
 
-createUpdate : (String -> SolutionOutput) -> (Msg -> Model -> Model)
+createUpdate : Solution -> (Msg -> Model -> Model)
 createUpdate solution =
     \msg model ->
         case msg of
