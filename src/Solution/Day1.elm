@@ -1,11 +1,14 @@
-module Solution.Day1 exposing (solution, title)
+module Solution.Day1 exposing (metadata, solution)
 
-import Solution.Types exposing (Solution)
+import Solution.Types exposing (PageMetadata, Solution)
 
 
-title : String
-title =
-    "Day 1: The Tyranny of the Rocket Equation"
+metadata : PageMetadata
+metadata =
+    { title = "Day 1: The Tyranny of the Rocket Equation"
+    , sourceCodeLink = "https://github.com/adamdune/aoc-2019-elm/blob/master/src/Solution/Day1.elm"
+    , aocPuzzleLink = "https://adventofcode.com/2019/day/1"
+    }
 
 
 part1 : List String -> Int

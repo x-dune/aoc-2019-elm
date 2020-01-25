@@ -57,12 +57,12 @@ initCurrentPage ( model, existingCmds ) =
                     ( NotFoundPage, Cmd.none )
 
                 Route.Day1 ->
-                    ( AocPage (Page.Aoc.init Solution.Day1.title) Solution.Day1.solution
+                    ( AocPage (Page.Aoc.init Solution.Day1.metadata) Solution.Day1.solution
                     , Cmd.none
                     )
 
                 Route.Day2 ->
-                    ( AocPage (Page.Aoc.init Solution.Day2.title) Solution.Day2.solution
+                    ( AocPage (Page.Aoc.init Solution.Day2.metadata) Solution.Day2.solution
                     , Cmd.none
                     )
     in
@@ -139,7 +139,7 @@ viewTitle model =
                     text ""
 
                 AocPage aocModel _ ->
-                    p [ class "mb-2 text-lg" ] [ text aocModel.title ]
+                    p [ class "mb-2 text-lg" ] [ text aocModel.metadata.title ]
     in
     div [ class "m-2 flex-col" ]
         [ p [ class "text-2xl mt-4 mb-2 font-bold" ] [ text "Advent of Code 2019 in Elm" ]

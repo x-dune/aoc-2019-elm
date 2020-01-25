@@ -1,15 +1,15 @@
 module Page.Aoc exposing (Model, Msg, createUpdate, init, view)
 
 import Html exposing (..)
-import Html.Attributes exposing (autofocus, class, placeholder, value)
+import Html.Attributes exposing (autofocus, class, href, placeholder, target, value)
 import Html.Events exposing (onClick, onInput)
-import Solution.Types exposing (Solution, SolutionOutput)
+import Solution.Types exposing (PageMetadata, Solution, SolutionOutput)
 
 
 type alias Model =
     { input : String
     , output : SolutionOutput
-    , title : String
+    , metadata : PageMetadata
     }
 
 
@@ -18,11 +18,11 @@ type Msg
     | OnClickCompute
 
 
-init : String -> Model
-init title =
+init : PageMetadata -> Model
+init metadata =
     { input = ""
     , output = SolutionOutput "" ""
-    , title = title
+    , metadata = metadata
     }
 
 
@@ -36,12 +36,17 @@ view model =
                     , onClick OnClickCompute
                     ]
                     [ text "compute" ]
-                , button
-                    [ class "bg-gray-800 p-4 mx-2 border-green-400 border-t-4 text-green-400" ]
-                    [ text "sourceCode" ]
-                , button
-                    [ class "bg-gray-800 p-4 mx-2 border-green-400 border-t-4 text-green-400" ]
-                    [ text "aocPuzzle" ]
+                , a [ href model.metadata.sourceCodeLink, target "_blank" ]
+                    [ button
+                        [ class "bg-gray-800 p-4 mx-2 border-green-400 border-t-4 text-green-400" ]
+                        [ text "sourceCode" ]
+                    ]
+                , a [ href model.metadata.aocPuzzleLink, target "_blank" ]
+                    [ button
+                        [ class "bg-gray-800 p-4 mx-2 border-green-400 border-t-4 text-green-400"
+                        ]
+                        [ text "aocPuzzle" ]
+                    ]
                 ]
             , div [ class "flex-2 border-b-4 border-gray-900" ]
                 [ textarea

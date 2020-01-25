@@ -1,12 +1,15 @@
-module Solution.Day2 exposing (solution, title)
+module Solution.Day2 exposing (metadata, solution)
 
 import Array exposing (Array)
-import Solution.Types exposing (Solution)
+import Solution.Types exposing (PageMetadata, Solution)
 
 
-title : String
-title =
-    "Day 2: 1202 Program Alarm"
+metadata : PageMetadata
+metadata =
+    { title = "Day 2: 1202 Program Alarm"
+    , sourceCodeLink = "https://github.com/adamdune/aoc-2019-elm/blob/master/src/Solution/Day2.elm"
+    , aocPuzzleLink = "https://adventofcode.com/2019/day/1"
+    }
 
 
 type alias IntcodeIO =

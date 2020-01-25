@@ -1,4 +1,4 @@
-module Solution.Types exposing (Solution, SolutionOutput)
+module Solution.Types exposing (PageMetadata, Solution, SolutionOutput)
 
 
 type alias SolutionOutput =
@@ -9,3 +9,10 @@ type alias SolutionOutput =
 
 type alias Solution =
     String -> SolutionOutput
+
+
+type alias PageMetadata =
+    { title : String
+    , sourceCodeLink : String
+    , aocPuzzleLink : String
+    }
