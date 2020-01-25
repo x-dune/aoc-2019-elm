@@ -1,6 +1,6 @@
 module Solution.Day1 exposing (metadata, solution)
 
-import Solution.Types exposing (PageMetadata, Solution)
+import Solution.Types exposing (PageMetadata, Solution, SolutionOutput(..))
 
 
 metadata : PageMetadata
@@ -70,6 +70,7 @@ solution input =
         processedInput =
             String.split "\n" input
     in
-    { part1 = part1 processedInput |> String.fromInt
-    , part2 = part2 processedInput |> String.fromInt
-    }
+    Computed
+        ( Ok (part1 processedInput |> String.fromInt)
+        , Ok (part2 processedInput |> String.fromInt)
+        )

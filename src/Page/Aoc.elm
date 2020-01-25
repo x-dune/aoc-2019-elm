@@ -3,7 +3,7 @@ module Page.Aoc exposing (Model, Msg, createUpdate, init, view)
 import Html exposing (..)
 import Html.Attributes exposing (autofocus, class, href, placeholder, target, value)
 import Html.Events exposing (onClick, onInput)
-import Solution.Types exposing (PageMetadata, Solution, SolutionOutput)
+import Solution.Types exposing (PageMetadata, Solution, SolutionOutput(..))
 
 
 type alias Model =
@@ -21,7 +21,7 @@ type Msg
 init : PageMetadata -> Model
 init metadata =
     { input = ""
-    , output = SolutionOutput "" ""
+    , output = NotComputed
     , metadata = metadata
     }
 
@@ -68,11 +68,25 @@ view model =
 
 viewOutputText : Model -> Html Msg
 viewOutputText model =
-    div [ class "flex-col font-mono" ]
-        [ span [] [ text "the computed outputs are ~>" ]
-        , span [ class "mr-2" ] [ text "part_1:", span [ class "text-green-500 ml-2" ] [ text model.output.part1 ] ]
-        , span [ class "mr-2" ] [ text "part_2:", span [ class "text-green-500 ml-2" ] [ text model.output.part2 ] ]
-        ]
+    let
+        buildOutputText output =
+            case output of
+                Ok actualOutput ->
+                    span [ class "text-green-500 ml-2" ] [ text actualOutput ]
+
+                Err errMsg ->
+                    span [ class "text-red-500 ml-2" ] [ text errMsg ]
+    in
+    case model.output of
+        Computed ( part1, part2 ) ->
+            div [ class "flex-col font-mono" ]
+                [ span [] [ text "the computed outputs are ~>" ]
+                , span [ class "mr-2" ] [ text "part_1:", buildOutputText part1 ]
+                , span [ class "mr-2" ] [ text "part_2:", buildOutputText part2 ]
+                ]
+
+        NotComputed ->
+            div [ class "flex-col font-mono" ] [ span [] [ text "your output goes here" ] ]
 
 
 createUpdate : Solution -> (Msg -> Model -> Model)

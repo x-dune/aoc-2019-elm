@@ -1,14 +1,14 @@
 module Solution.Day2 exposing (metadata, solution)
 
 import Array exposing (Array)
-import Solution.Types exposing (PageMetadata, Solution)
+import Solution.Types exposing (PageMetadata, Solution, SolutionOutput(..))
 
 
 metadata : PageMetadata
 metadata =
     { title = "Day 2: 1202 Program Alarm"
     , sourceCodeLink = "https://github.com/adamdune/aoc-2019-elm/blob/master/src/Solution/Day2.elm"
-    , aocPuzzleLink = "https://adventofcode.com/2019/day/1"
+    , aocPuzzleLink = "https://adventofcode.com/2019/day/2"
     }
 
 
@@ -20,7 +20,7 @@ type alias IntcodeIO =
 
 genericError : Result String a
 genericError =
-    Err "Error"
+    Err "an error occured..."
 
 
 part1 : Array Int -> Result String Int
@@ -132,15 +132,10 @@ solution input =
             String.split "," input
                 |> List.filterMap String.toInt
                 |> Array.fromList
-
-        parseResultToString result =
-            case result of
-                Ok actualResult ->
-                    String.fromInt actualResult
-
-                Err errorMessage ->
-                    errorMessage
     in
-    { part1 = part1 processedInput |> parseResultToString
-    , part2 = part2 processedInput |> parseResultToString
-    }
+    Computed
+        ( part1 processedInput
+            |> Result.map String.fromInt
+        , part2 processedInput
+            |> Result.map String.fromInt
+        )

@@ -1,10 +1,9 @@
-module Solution.Types exposing (PageMetadata, Solution, SolutionOutput)
+module Solution.Types exposing (PageMetadata, Solution, SolutionOutput(..))
 
 
-type alias SolutionOutput =
-    { part1 : String
-    , part2 : String
-    }
+type SolutionOutput
+    = Computed ( Result String String, Result String String )
+    | NotComputed
 
 
 type alias Solution =
