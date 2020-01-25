@@ -3,7 +3,7 @@ module Main exposing (main)
 import Browser exposing (Document, UrlRequest)
 import Browser.Navigation as Nav
 import Html exposing (..)
-import Html.Attributes exposing (class, href)
+import Html.Attributes exposing (class, href, src)
 import Page.Aoc
 import Page.NotFound
 import Route exposing (Route)
@@ -22,6 +22,7 @@ type alias Model =
     { route : Route
     , page : Page
     , navKey : Nav.Key
+    , logoPath : String
     }
 
 
@@ -31,12 +32,17 @@ type Msg
     | AocPageMsg Page.Aoc.Msg
 
 
-init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
-init _ url navKey =
+type alias Flags =
+    String
+
+
+init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init flags url navKey =
     initCurrentPage
         ( { route = Route.parseUrl url
           , page = NotFoundPage
           , navKey = navKey
+          , logoPath = flags
           }
         , Cmd.none
         )
@@ -51,10 +57,14 @@ initCurrentPage ( model, existingCmds ) =
                     ( NotFoundPage, Cmd.none )
 
                 Route.Day1 ->
-                    ( AocPage Page.Aoc.init Solution.Day1.solution, Cmd.none )
+                    ( AocPage (Page.Aoc.init Solution.Day1.title) Solution.Day1.solution
+                    , Cmd.none
+                    )
 
                 Route.Day2 ->
-                    ( AocPage Page.Aoc.init Solution.Day2.solution, Cmd.none )
+                    ( AocPage (Page.Aoc.init Solution.Day2.title) Solution.Day2.solution
+                    , Cmd.none
+                    )
     in
     ( { model | page = currentPage }
     , Cmd.batch [ existingCmds, mappedPageCmds ]
@@ -97,17 +107,48 @@ view model =
     { title = "Advent Of Code 2019 | Elm Solutions"
     , body =
         [ div []
-            [ a [ href "/day1", class "m-10" ] [ text "/day1" ]
-            , a [ href "/day2", class "m-10" ] [ text "/day2" ]
-            , a [ href "/totallynotapage", class "m-10" ] [ text "/totallynotapage" ]
+            [ viewSidebar model
+            , div
+                [ class "flex-col flex-1" ]
+                [ viewTitle model
+                , viewBody model
+                ]
             ]
-        , bodyView model
         ]
     }
 
 
-bodyView : Model -> Html Msg
-bodyView model =
+viewSidebar : Model -> Html Msg
+viewSidebar model =
+    div [ class "flex-col bg-indigo-600 min-h-screen" ]
+        [ a [ href "/", class "m-4" ]
+            [ img [ src model.logoPath, class "h-auto w-32" ] []
+            ]
+        , a [ href "/day1", class "mx-4 my-1" ] [ text "/day1" ]
+        , a [ href "/day2", class "mx-4 my-1" ] [ text "/day2" ]
+        , a [ href "/totallynotapage", class "mx-4 my-1" ] [ text "/totallynotapage" ]
+        ]
+
+
+viewTitle : Model -> Html Msg
+viewTitle model =
+    let
+        pageTitle =
+            case model.page of
+                NotFoundPage ->
+                    text ""
+
+                AocPage aocModel _ ->
+                    p [ class "mb-2 text-lg" ] [ text aocModel.title ]
+    in
+    div [ class "m-2 flex-col" ]
+        [ p [ class "text-2xl mt-4 mb-2 font-bold" ] [ text "Advent of Code 2019 in Elm" ]
+        , pageTitle
+        ]
+
+
+viewBody : Model -> Html Msg
+viewBody model =
     case model.page of
         NotFoundPage ->
             Page.NotFound.view
@@ -117,7 +158,7 @@ bodyView model =
                 |> Html.map AocPageMsg
 
 
-main : Program () Model Msg
+main : Program Flags Model Msg
 main =
     Browser.application
         { init = init

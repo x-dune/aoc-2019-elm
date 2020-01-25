@@ -1,9 +1,11 @@
 import './main.css'
 import { Elm } from './Main.elm'
 import * as serviceWorker from './serviceWorker'
+import logoPath from '../public/logo-white.svg'
 
 Elm.Main.init({
   node: document.getElementById('root'),
+  flags: logoPath,
 })
 
 // If you want your app to work offline and load faster, you can change

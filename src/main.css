@@ -5,7 +5,7 @@
   More context in the issue:
     https://github.com/halfzebra/create-elm-app/issues/320
 */
-[data-elm-hot='true'] {
+[data-elm-hot="true"] {
   height: inherit;
 }
 
@@ -15,7 +15,16 @@
 
 @tailwind utilities;
 
-html {
-  background-color: black;
-  color: white;
+body {
+  background-color: theme("colors.gray.900");
+  color: theme("colors.gray.100");
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+body * {
+  display: flex;
+}
+
+._font-source {
+  font-family: "Source Code Pro", monospace;
 }

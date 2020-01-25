@@ -1,6 +1,11 @@
-module Solution.Day1 exposing (solution)
+module Solution.Day1 exposing (solution, title)
 
 import Solution.Types exposing (Solution)
+
+
+title : String
+title =
+    "Day 1: The Tyranny of the Rocket Equation"
 
 
 part1 : List String -> Int

@@ -1,7 +1,12 @@
-module Solution.Day2 exposing (part2, solution)
+module Solution.Day2 exposing (solution, title)
 
 import Array exposing (Array)
 import Solution.Types exposing (Solution)
+
+
+title : String
+title =
+    "Day 2: 1202 Program Alarm"
 
 
 type alias IntcodeIO =
