@@ -32,18 +32,18 @@ view model =
         [ div [ class "flex-col flex-1" ]
             [ div [ class "" ]
                 [ button
-                    [ class "bg-gray-800 p-4 mx-2 border-green-400 border-t-4 text-green-400"
+                    [ class "bg-gray-800 p-4 mx-2 border-green-600 border-t-4 text-green-400 _compute-btn relative"
                     , onClick OnClickCompute
                     ]
                     [ text "compute" ]
                 , a [ href model.metadata.sourceCodeLink, target "_blank" ]
                     [ button
-                        [ class "bg-gray-800 p-4 mx-2 border-green-400 border-t-4 text-green-400" ]
+                        [ class "bg-gray-800 p-4 mx-2 border-green-600 border-t-4 text-green-400" ]
                         [ text "sourceCode" ]
                     ]
                 , a [ href model.metadata.aocPuzzleLink, target "_blank" ]
                     [ button
-                        [ class "bg-gray-800 p-4 mx-2 border-green-400 border-t-4 text-green-400"
+                        [ class "bg-gray-800 p-4 mx-2 border-green-600 border-t-4 text-green-400"
                         ]
                         [ text "aocPuzzle" ]
                     ]
