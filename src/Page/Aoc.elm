@@ -1,7 +1,7 @@
 module Page.Aoc exposing (Model, Msg, createUpdate, init, view)
 
 import Html exposing (..)
-import Html.Attributes exposing (autofocus, class, href, placeholder, target, value)
+import Html.Attributes exposing (autocomplete, autofocus, class, href, placeholder, spellcheck, target, value)
 import Html.Events exposing (onClick, onInput)
 import Solution.Types exposing (PageMetadata, Solution, SolutionOutput(..))
 
@@ -54,8 +54,9 @@ view model =
                     , autofocus True
                     , value model.input
                     , class "text-white bg-black resize-none flex-1 p-4 font-mono"
-                    , placeholder
-                        "enter your input here"
+                    , placeholder "enter your input here"
+                    , autocomplete False
+                    , spellcheck False
                     ]
                     []
                 ]
