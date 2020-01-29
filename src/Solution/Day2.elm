@@ -2,14 +2,12 @@ module Solution.Day2 exposing (metadata, solution)
 
 import Array exposing (Array)
 import Solution.Types exposing (PageMetadata, Solution, SolutionOutput(..))
+import Util.Helper exposing (metadataHelper)
 
 
 metadata : PageMetadata
 metadata =
-    { title = "Day 2: 1202 Program Alarm"
-    , sourceCodeLink = "https://github.com/adamdune/aoc-2019-elm/blob/master/src/Solution/Day2.elm"
-    , aocPuzzleLink = "https://adventofcode.com/2019/day/2"
-    }
+    metadataHelper "Day 2: 1202 Program Alarm" 2
 
 
 type alias IntcodeIO =

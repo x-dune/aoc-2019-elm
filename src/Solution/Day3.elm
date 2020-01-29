@@ -3,14 +3,12 @@ module Solution.Day3 exposing (metadata, solution)
 import Parser exposing ((|.), (|=), Parser, Trailing(..))
 import Set
 import Solution.Types exposing (PageMetadata, Solution, SolutionOutput(..))
+import Util.Helper exposing (metadataHelper)
 
 
 metadata : PageMetadata
 metadata =
-    { title = "Day 3: Crossed Wires"
-    , sourceCodeLink = "https://github.com/adamdune/aoc-2019-elm/blob/master/src/Solution/Day3.elm"
-    , aocPuzzleLink = "https://adventofcode.com/2019/day/3"
-    }
+    metadataHelper "Day 3: Crossed Wires" 3
 
 
 type alias Coord =

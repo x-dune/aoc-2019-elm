@@ -1,14 +1,12 @@
 module Solution.Day1 exposing (metadata, solution)
 
 import Solution.Types exposing (PageMetadata, Solution, SolutionOutput(..))
+import Util.Helper exposing (metadataHelper)
 
 
 metadata : PageMetadata
 metadata =
-    { title = "Day 1: The Tyranny of the Rocket Equation"
-    , sourceCodeLink = "https://github.com/adamdune/aoc-2019-elm/blob/master/src/Solution/Day1.elm"
-    , aocPuzzleLink = "https://adventofcode.com/2019/day/1"
-    }
+    metadataHelper "Day 1: The Tyranny of the Rocket Equation" 1
 
 
 part1 : List String -> Int
