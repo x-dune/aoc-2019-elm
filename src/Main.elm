@@ -10,6 +10,7 @@ import Route exposing (Route)
 import Solution.Day1
 import Solution.Day2
 import Solution.Day3
+import Solution.Day4
 import Solution.Types exposing (Solution)
 import Url exposing (Url)
 
@@ -69,6 +70,11 @@ initCurrentPage ( model, existingCmds ) =
 
                 Route.Day3 ->
                     ( AocPage (Page.Aoc.init Solution.Day3.metadata) Solution.Day3.solution
+                    , Cmd.none
+                    )
+
+                Route.Day4 ->
+                    ( AocPage (Page.Aoc.init Solution.Day4.metadata) Solution.Day4.solution
                     , Cmd.none
                     )
     in
@@ -133,6 +139,7 @@ viewSidebar model =
         , a [ href "/day1", class "mx-4 my-1" ] [ text "/day1" ]
         , a [ href "/day2", class "mx-4 my-1" ] [ text "/day2" ]
         , a [ href "/day3", class "mx-4 my-1" ] [ text "/day3" ]
+        , a [ href "/day4", class "mx-4 my-1" ] [ text "/day4" ]
         , a [ href "/totallynotapage", class "mx-4 my-1" ] [ text "/totallynotapage" ]
         ]
 
